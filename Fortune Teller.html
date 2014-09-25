@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Fortune Teller</title>
+</head>
+<body>
+    <div id="fortune=teller">
+        <button onclick="shake()">Shake</button>
+        <p id="question"></p>
+        <p id="answer"></p>
+    <div>
+</body>
+
+<script>
+    var fortuneTeller = {
+        promptText: "Ask me a question.",
+        answerType: "image",
+        answers: [
+            "image/yes.png",
+            "image/no.png",
+            "image/maybe.png"  
+        ],
+        getAnswer: function(){
+            var min = 1;
+            var max = this.answers.length;
+            var index = Math.floor(Math.random() * (max - min + 1)) + min;
+            return this.answers[index-1];
+        }
+    };
+    console.log(fortuneTeller.getAnswer());
+    function shake(){
+        var question = prompt(fortuneTeller.promptText);
+        var questionText = document.getElementById('question');
+        questionText.innerHTML = question;
+        var randomAnswer = fortuneTeller.getAnswer();
+        var fortuneText = document.getElementById('answer');
+        fortuneText.innerHTML = '<img src="' + randomAnswer +'"/>';
+    }
+</script>
+</body>
+
+</html>
